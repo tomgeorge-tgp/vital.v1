@@ -41,18 +41,15 @@ function PhoneNumber(){
          "Content-Type":"application/json",
          "Accept": "*/*",
        }
-     }).then(res => { 
+     })
+     .then(res => { 
           console.log(res.status, res.data)
           console.log(res.data.user._id)
           setUser({id: res.data?.user?._id, accessToken: res.data?.accessToken});
           console.log(user.current);
-     }
-     )
+     })
+     .then(() => navigate("/dashboard",{state:data}))
      .catch(err =>  new Error(err))
-     .finally(navigate("/dashboard",{state: data}));
-     
-    
-     
    }
     
    
