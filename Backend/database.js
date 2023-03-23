@@ -3,13 +3,18 @@ import SensorSchema from "./Models/SensorSchema.js";
 import UserSchema from "./Models/User.js";
 
 
+let realm;
+async function openRealm() {
+  realm = await Realm.open({
+    schema: [UserSchema, SensorSchema],
+    path: "testDatabase",
+  });
+  // rest of your code using the realm instance
+  console.log(`Opened Realm database with path: ${realm.path}`);
+}
 
-
-const realm = await Realm.open({
-      schema: [UserSchema, SensorSchema],
-      path: "testDatabase",
-    }
-    );
+openRealm();    
+ export default realm
     
     
     // let user1, user2;
@@ -35,8 +40,4 @@ const realm = await Realm.open({
     // const tasks = realm.objects("UserSchema");
     // console.log(`The lists of tasks are: ${tasks.map((task) => task.name)}`);
     // realm.close();
-    
-    export default realm
-    
-    
     
